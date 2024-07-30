@@ -1,0 +1,28 @@
+<div class="m-4">
+    <div class="ui card p-2 m-auto d-flex">
+        <h1>{{taskTitle}}</h1>
+        <h3>Proceed to next task if the above is complete</h3>
+        @if(isComplete){
+        <button type="button" [disabled]="!isComplete" class="ui olive button" (click)="otherTasks()">Next ></button>
+        <div class="ui card p-2 m-auto d-flex">
+            <button type="button" class="ui negative button" (click)="taskNotComplete()">Mark Not Complete</button>
+        </div>
+        } @else{
+            <button type="button" class="ui button" [disabled]="!isComplete">Not Complete</button>
+            <div class="ui card p-2 m-auto d-flex">
+                <button type="button" class="ui green button" (click)="completeTask()">Mark Complete</button>
+            </div>
+        }
+    </div>
+</div>
+<br>
+@if(otherTask){
+    <div class="ui card m-auto d-flex p-2">
+        <h3 class="display 3">Other tasks</h3>
+        <ul>
+            @for(task of tasks;track task.role){
+                <li>{{task.role}}-{{task.responsibility}}</li>
+            }
+        </ul>
+    </div>
+}
